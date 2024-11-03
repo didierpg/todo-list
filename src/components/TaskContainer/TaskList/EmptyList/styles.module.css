@@ -1,0 +1,16 @@
+.emptylist {
+  display: flex;
+  flex-direction: column;
+  color: var(--gray-300);
+  align-items: center;
+  gap: 1.125em;
+  padding: 4rem 1.5rem;
+}
+
+.emptylist img {
+  width: 3.5rem;
+}
+
+.emptylist span {
+  display: block;
+}

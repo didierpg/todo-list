@@ -1,17 +1,39 @@
-import { Circle, Trash } from "@phosphor-icons/react";
+import { CheckCircle, Circle, Trash } from "@phosphor-icons/react";
 import styles from "./styles.module.css";
 
-export function Task() {
+export interface TaskProps {
+  id: number;
+  description?: string;
+  isDone: boolean;
+}
+
+interface TaskComponentProps extends TaskProps {
+  onCheckTask: (id: number) => void;
+  onRemoveTask: (id: number) => void;
+}
+
+export function Task({
+  id,
+  isDone,
+  description,
+  onCheckTask,
+  onRemoveTask,
+}: TaskComponentProps) {
+  const toggleCheckboxTask = () => {
+    onCheckTask(id);
+  };
+
+  const handleButtonRemoveTask = () => {
+    onRemoveTask(id);
+  };
+
   return (
     <div className={styles.task}>
-      <button>
-        <Circle />
+      <button onClick={toggleCheckboxTask}>
+        {isDone ? <CheckCircle weight="fill" /> : <Circle />}
       </button>
-      <p>
-        Integer urna interdum massa libero auctor neque turpis turpis semper.
-        Duis vel sed fames integer.
-      </p>
-      <button>
+      <p className={isDone ? styles.done : ""}>{description}</p>
+      <button onClick={handleButtonRemoveTask}>
         <Trash />
       </button>
     </div>

@@ -1,15 +1,34 @@
 import styles from "./styles.module.css";
-import { Task } from "./Task";
+import { Task, TaskProps } from "./Task";
+import { EmptyList } from "./EmptyList";
 
-export function TaskList() {
+interface TaskListProps {
+  tasks: TaskProps[];
+  onCheckTask: (id: number) => void; // Função para remover tarefas
+  onRemoveTask: (id: number) => void; // Função para remover tarefas
+}
+
+export function TaskList({
+  tasks = [],
+  onCheckTask,
+  onRemoveTask,
+}: TaskListProps) {
   return (
     <div className={styles.tasklist}>
-      <Task />
-      <Task />
-      <Task />
-      <Task />
-      <Task />
-      <Task />
+      {tasks.length > 0 ? (
+        tasks.map(({ id, description, isDone }) => (
+          <Task
+            key={id}
+            id={id}
+            description={description}
+            isDone={isDone}
+            onCheckTask={onCheckTask}
+            onRemoveTask={onRemoveTask} // Passe `onRemoveTask` como `taskRemover`
+          />
+        ))
+      ) : (
+        <EmptyList />
+      )}
     </div>
   );
 }
