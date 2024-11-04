@@ -2,10 +2,11 @@
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  /* position: absolute;
+  position: absolute;
   top: 10.45rem;
   left: 50%;
-  transform: translateX(-50%); */
+  transform: translateX(-50%);
+  width: inherit;
 }
 
 .taskadder input {
@@ -27,22 +28,31 @@
 
 .taskadder button {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 0.5rem;
   background-color: var(--blue-dark);
   color: var(--gray-100);
   border-radius: 8px;
-  font-size: 0.875rem;
-  width: 5.625rem;
   cursor: pointer;
+  padding: 1rem;
+}
+
+.taskadder button:focus {
+  background-color: var(--blue);
+  border-color: var(--purple-dark);
+  outline: none;
   transition: border-color 0.5s ease;
 }
 
-button:focus {
-  outline: none;
-  border-color: var(--purple-dark);
+.taskadder button:hover {
+  background-color: var(--blue);
+  transition: background-color 1s ease;
 }
-.task-adder button svg {
-  font-size: 1.25rem;
+
+.taskadder button strong {
+  font-size: var(--font-size-medium);
+}
+
+.taskadder button svg {
+  font-size: var(--font-size-large);
 }
